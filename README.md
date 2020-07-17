@@ -1,5 +1,5 @@
 # movieRater
-The Nic Cage DTV movie rater: a Single Page Application (SPA) build with Reactjs function components and hooks, and Django-Rest-Framework with authentication and authorization.
+The Nic Cage DTV movie rater: a Single Page Application (SPA) built with Reactjs function components and hooks, and Django-Rest-Framework with authentication and authorization.
 
 
 
