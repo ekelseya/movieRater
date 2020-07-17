@@ -6,7 +6,7 @@ The Nic Cage DTV movie rater: a Single Page Application (SPA) built with Reactjs
 ## Installation
 ### The Backend
 Clone this repository: 
-    git clone git@github.com:ekelseya/movierater.git.
+    https://github.com/ekelseya/movieRater.git
 
 cd into MovieRaterAPI  
 
