@@ -31,6 +31,7 @@ class Movie(models.Model):
     """
     # TODO: fix release date
     # TODO: def str
+    # TODO: README
     title = models.CharField(max_length=60)
     release_date = models.DateField(default=date.today)
     description = models.TextField()
