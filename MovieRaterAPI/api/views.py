@@ -25,6 +25,7 @@ from rest_framework import permissions
 from django.contrib.auth.models import User
 from .models import Movie, Rating, Comment
 from .serializers import MovieSerializer, RatingSerializer, UserSerializer, CommentSerializer
+from .permissions import IsAdminOrReadOnly
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -46,13 +47,11 @@ class MovieViewSet(viewsets.ModelViewSet):
         creates or updates a user's movie rating
 
     """
-    # TODO: update permissions to isAdminOrReadOnly
     queryset = Movie.objects.all().order_by('release_date')
     serializer_class = MovieSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAdminOrReadOnly, )
     authentication_classes = (TokenAuthentication, )
 
-# TODO: use similar format to create an owner only delete (if request.user.id == owner)
     @action(detail=True, methods=['POST'])
     def rate_movie(self, request, pk=None):
         """
