@@ -30,8 +30,6 @@ class Movie(models.Model):
         retrieves a movie's ratings and returns the average
     """
     # TODO: fix release date
-    # TODO: def str
-    # TODO: README
     title = models.CharField(max_length=60)
     release_date = models.DateField(default=date.today)
     description = models.TextField()
@@ -65,7 +63,7 @@ class Rating(models.Model):
     """
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    stars = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    stars = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
 
     class Meta:
         """
