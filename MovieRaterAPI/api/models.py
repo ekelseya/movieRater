@@ -75,17 +75,3 @@ class Rating(models.Model):
 
     def __str__(self):
         return self.movie
-
-
-class Comment(models.Model):
-    """
-    A simple model class to define the Comment schema
-    Each comment has a one to many relation to both users and movies
-    """
-    movie = models.ForeignKey(Movie, related_name='comments', on_delete=models.CASCADE)
-    owner = models.ForeignKey(User, related_name='comments', on_delete=models.CASCADE)
-    text = models.TextField()
-    date_created = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.text

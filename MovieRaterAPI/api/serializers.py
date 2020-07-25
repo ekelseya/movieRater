@@ -20,7 +20,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
-from .models import Movie, Rating, Comment
+from .models import Movie, Rating
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -77,17 +77,3 @@ class RatingSerializer(serializers.ModelSerializer):
         """
         model = Rating
         fields = ('id', 'user', 'movie', 'stars')
-
-
-class CommentSerializer(serializers.ModelSerializer):
-    """
-    A simple serializer class to render comment data as JSON objects
-    """
-    owner = serializers.ReadOnlyField(source='owner.username')
-
-    class Meta:
-        """
-        Automatically generates a set of fields based on the Comment model
-        """
-        model = Comment
-        fields = ('id', 'owner', 'movie', 'text', 'date_created')

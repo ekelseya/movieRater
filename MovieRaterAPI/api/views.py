@@ -23,9 +23,8 @@ from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import permissions
 from django.contrib.auth.models import User
-from .models import Movie, Rating, Comment
-from .serializers import MovieSerializer, RatingSerializer, UserSerializer, CommentSerializer
-from .permissions import IsAdminOrReadOnly
+from .models import Movie, Rating
+from .serializers import MovieSerializer, RatingSerializer, UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -49,7 +48,7 @@ class MovieViewSet(viewsets.ModelViewSet):
     """
     queryset = Movie.objects.all().order_by('release_date')
     serializer_class = MovieSerializer
-    permission_classes = (IsAdminOrReadOnly, )
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
     authentication_classes = (TokenAuthentication, )
 
     @action(detail=True, methods=['POST'])
@@ -107,26 +106,3 @@ class RatingViewSet(viewsets.ModelViewSet):
         """
         response = {'message': 'Please log in first'}
         return Response(response, status=status.HTTP_400_BAD_REQUEST)
-
-
-class CommentViewSet(viewsets.ModelViewSet):
-    """
-    A simple viewset for viewing and editing movie instances
-
-    update and create overridden and replaced by MovieViewSet.rate_movie
-
-    """
-    queryset = Comment.objects.all().order_by('date_created')
-    serializer_class = CommentSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
-    authentication_classes = (TokenAuthentication, )
-
-    def create(self, request, *args, **kwargs):
-        owner = request.user
-        id = request.data['movie']
-        movie = Movie.objects.get(pk=id)
-        text = request.data['text']
-        comment = Comment.objects.create(owner=owner, movie=movie, text=text)
-        serializer = CommentSerializer(comment, many=False)
-        response = {'message': 'Comment created', 'result': serializer.data}
-        return Response(response, status=status.HTTP_200_OK)
