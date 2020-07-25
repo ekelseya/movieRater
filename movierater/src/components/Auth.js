@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState } from "react";
 import { useHistory } from 'react-router-dom'
 import { useCookies } from "react-cookie";
 import { API } from "../APIservice";
@@ -10,6 +10,7 @@ function Auth() {
     const [ password, setPassword ] = useState('');
     const [isLoginView, setIsLoginView ] = useState(true);
 
+    // eslint-disable-next-line
     const [token, setToken] = useCookies(['mr-token']);
 
     const history = useHistory();

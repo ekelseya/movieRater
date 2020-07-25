@@ -1,18 +1,8 @@
 import React from "react";
-import { useCookies } from "react-cookie";
 import { bool } from 'prop-types';
 import { StyledMenu } from "./styles/Menu.styled";
-import {useHistory} from "react-router-dom";
 
 const Menu = ({ open }) => {
-
-    const [token, setToken, deleteToken] = useCookies(['mr-token']);
-    const history = useHistory();
-
-    const logoutUser = () => {
-        deleteToken('mr-token');
-        history.push('/');
-    }
 
     return (
         <StyledMenu open={open}>

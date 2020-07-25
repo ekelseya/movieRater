@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 
 function AppBar() {
 
+    // eslint-disable-next-line
     const [token, setToken, deleteToken] = useCookies(['mr-token']);
     const history = useHistory();
 
