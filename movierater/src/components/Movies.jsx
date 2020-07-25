@@ -28,7 +28,8 @@ function Movies() {
             </div>
             <div>
                 <MovieDetail
-                    movie={selectedMovie}/>
+                    movie={selectedMovie}
+                    updateMovie={loadMovie} />
             </div>
         </StyledMovies>
     )

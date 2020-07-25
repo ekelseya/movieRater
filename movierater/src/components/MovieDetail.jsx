@@ -3,14 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons'
 import {useCookies} from "react-cookie";
 import { StyledMovieDetail } from "./styles/MovieDetail.styled";
-// import CommentDetail from "./CommentDetail";
-// import CommentForm from "./CommentForm";
 
 function MovieDetail(props) {
 
     const mv = props.movie;
-    // const [ comments, setComments ] = useState(null)
-    // const [ editedComment, setEditedComment ] = useState(null);
     const [ highlighted, setHighlighted ] = useState(-1);
     const [ token ] = useCookies(['mr-token']);
 
@@ -43,34 +39,6 @@ function MovieDetail(props) {
             .then( res => props.updateMovie(res))
             .catch( error => console.log(error))
     }
-
-    // const updatedComment = newComment => {
-    //     const newCommentList = comments.map( comment => {
-    //         if (comment === newComment) {
-    //             return newComment;
-    //         }
-    //         return comment;
-    //     })
-    //     setComments(newCommentList);
-    // }
-    // // TODO: need to add edit functionality in form (props)
-    // const editComment = comment => {
-    //     setEditedComment(comment);
-    // }
-    //
-    // const createComment = evt => {
-    //     setEditedComment({text: ''});
-    // }
-    //
-    // const commentCreated = comment => {
-    //     const newCommentList = [...comments, comment];
-    //     setComments(newCommentList);
-    // }
-    // // TODO: need to add delete functionality in form (props)
-    // const deleteComment = deletedComment => {
-    //     const newCommentList = comments.filter(comment => comment !== deletedComment);
-    //     setComments(newCommentList);
-    // }
 
     return (
         <StyledMovieDetail>
@@ -130,24 +98,6 @@ function MovieDetail(props) {
                         })
                         }
                     </div>
-                    {/*<div className='comments-container'>*/}
-                    {/*    /!*TODO: Style button*!/*/}
-                    {/*    /!*TODO: Adding a comment loses the loaded movie; send prop to Movies?*!/*/}
-                    {/*    <button onClick={createComment}>Add New Comment</button>*/}
-                    {/*    { editedComment ?*/}
-                    {/*        <CommentForm*/}
-                    {/*            movie={mv}*/}
-                    {/*            comment={editedComment}*/}
-                    {/*            updatedComment={updatedComment}*/}
-                    {/*            newComment={commentCreated}*/}
-                    {/*            getDetails={getDetails} />*/}
-                    {/*        : null }*/}
-                    {/*    {(mv.comments && mv.comments.map((comment, i) => {*/}
-                    {/*    //    TODO: add hooks to create, edit, and delete comment*/}
-                    {/*    return (<CommentDetail key={i} comment={comment} />)*/}
-                    {/*    }*/}
-                    {/*))}*/}
-                    {/*</div>*/}
                 </div>
             ) : null }
         </StyledMovieDetail>
