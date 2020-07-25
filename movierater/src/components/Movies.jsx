@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import MovieList from "./MovieList";
 import MovieDetail from "./MovieDetail";
 import { StyledMovies } from "./styles/Movies.styled";
@@ -11,6 +11,7 @@ function Movies() {
 
     const loadMovie = movie => {
         setSelectedMovie(movie);
+        window.scrollTo(0,0);
     }
 
     useEffect(() => {
