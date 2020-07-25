@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons'
 import {useCookies} from "react-cookie";
 import { StyledMovieDetail } from "./styles/MovieDetail.styled";
 // import CommentDetail from "./CommentDetail";
@@ -84,20 +84,44 @@ function MovieDetail(props) {
                     </h3>
                     <p>{mv.description}</p>
                     <div>
-                        <FontAwesomeIcon icon={faStar} className={Math.floor(mv.avg_rating) > 0 ? 'stars-rated' : 'stars-unrated'} />
-                        <FontAwesomeIcon icon={faStar} className={Math.floor(mv.avg_rating) > 1 ? 'stars-rated' : 'stars-unrated'} />
-                        <FontAwesomeIcon icon={faStar} className={Math.floor(mv.avg_rating) > 2 ? 'stars-rated' : 'stars-unrated'} />
-                        <FontAwesomeIcon icon={faStar} className={Math.floor(mv.avg_rating) > 3 ? 'stars-rated' : 'stars-unrated'} />
-                        <FontAwesomeIcon icon={faStar} className={Math.floor(mv.avg_rating) > 4 ? 'stars-rated' : 'stars-unrated'} />
+                        {/* One to one and a half stars */}
+                        <FontAwesomeIcon icon={faStar} className={mv.avg_rating >= 1 ? 'stars-rated' : 'stars-unrated'} />
+                        {(1 < mv.avg_rating && mv.avg_rating < 2) && <FontAwesomeIcon icon={faStarHalf} className='stars-rated' /> }
+                        {/* Two to two and a half stars */}
+                        <FontAwesomeIcon icon={faStar} className={(1 < mv.avg_rating && mv.avg_rating < 2) ? 'half-stars-unrated' : mv.avg_rating >= 2 ? 'stars-rated' : 'stars-unrated'} />
+                        {(2 < mv.avg_rating && mv.avg_rating < 3) && <FontAwesomeIcon icon={faStarHalf} className='stars-rated' /> }
+                        {/* Three to three and a half stars */}
+                        <FontAwesomeIcon icon={faStar} className={(2 < mv.avg_rating && mv.avg_rating < 3) ? 'half-stars-unrated' : mv.avg_rating >= 3 ? 'stars-rated' : 'stars-unrated'} />
+                        {(3 < mv.avg_rating && mv.avg_rating < 4) && <FontAwesomeIcon icon={faStarHalf} className='stars-rated' /> }
+                        {/* Four to four and a half stars */}
+                        <FontAwesomeIcon icon={faStar} className={(3 < mv.avg_rating && mv.avg_rating < 4) ? 'half-stars-unrated' : mv.avg_rating >= 4 ? 'stars-rated' : 'stars-unrated'} />
+                        {(4 < mv.avg_rating && mv.avg_rating < 5) && <FontAwesomeIcon icon={faStarHalf} className='stars-rated' /> }
+                        {/* Five to five and a half stars */}
+                        <FontAwesomeIcon icon={faStar} className={(4 < mv.avg_rating && mv.avg_rating < 5) ? 'half-stars-unrated' : mv.avg_rating >= 5 ? 'stars-rated' : 'stars-unrated'} />
+                        {(5 < mv.avg_rating && mv.avg_rating < 6) && <FontAwesomeIcon icon={faStarHalf} className='stars-rated' /> }
+                        {/* Six to six and a half stars */}
+                        <FontAwesomeIcon icon={faStar} className={(5 < mv.avg_rating && mv.avg_rating < 6) ? 'half-stars-unrated' : mv.avg_rating >= 6 ? 'stars-rated' : 'stars-unrated'} />
+                        {(6 < mv.avg_rating && mv.avg_rating < 7) && <FontAwesomeIcon icon={faStarHalf} className='stars-rated' /> }
+                        {/* Seven to seven and a half stars */}
+                        <FontAwesomeIcon icon={faStar} className={(6 < mv.avg_rating && mv.avg_rating < 7) ? 'half-stars-unrated' : mv.avg_rating >= 7 ? 'stars-rated' : 'stars-unrated'} />
+                        {(7 < mv.avg_rating && mv.avg_rating < 8) && <FontAwesomeIcon icon={faStarHalf} className='stars-rated' /> }
+                        {/* Eight to eight and a half stars */}
+                        <FontAwesomeIcon icon={faStar} className={(7 < mv.avg_rating && mv.avg_rating < 8) ? 'half-stars-unrated' : mv.avg_rating >= 8 ? 'stars-rated' : 'stars-unrated'} />
+                        {(8 < mv.avg_rating && mv.avg_rating < 9) && <FontAwesomeIcon icon={faStarHalf} className='stars-rated' /> }
+                        {/* Nine to nine and a half stars */}
+                        <FontAwesomeIcon icon={faStar} className={(8 < mv.avg_rating && mv.avg_rating < 9) ? 'half-stars-unrated' : mv.avg_rating >= 9 ? 'stars-rated' : 'stars-unrated'} />
+                        {(9 < mv.avg_rating && mv.avg_rating < 10) && <FontAwesomeIcon icon={faStarHalf} className='stars-rated' /> }
+                        {/* Ten stars */}
+                        <FontAwesomeIcon icon={faStar} className={mv.avg_rating === 10 ? 'stars-rated' : 'stars-unrated'} />
                     </div>
                     <p>
-                        {Math.floor(mv.avg_rating)} out of 5 stars from {mv.num_ratings === 1 ?
+                        {Math.round(mv.avg_rating * 10) / 10} out of 10 stars from {mv.num_ratings === 1 ?
                         `${mv.num_ratings} rating` :
                         `${mv.num_ratings} ratings`}
                     </p>
                     <div className="rating-container">
                         <h3>Rate this movie!</h3>
-                        { [...Array(5)].map( (el, i) => {
+                        { [...Array(10)].map( (el, i) => {
                             return <FontAwesomeIcon key={i} icon={faStar} className={highlighted > i - 1 ? 'stars-rated' : 'stars-unrated'}
                                     onMouseEnter={highlightRate(i)}
                                     onMouseLeave={highlightRate(-1)}
