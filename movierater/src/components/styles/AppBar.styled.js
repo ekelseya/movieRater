@@ -13,7 +13,7 @@ export const StyledAppBar = styled.div`
         transform: rotate(45deg);
     }
     
-      button {
+    button {
         margin-top: 1rem;
         float: right;
         padding: 1rem;
@@ -29,10 +29,11 @@ export const StyledAppBar = styled.div`
     }
     
     button:focus:active {
-      background-color: #FFDC73;
+        background-color: #FFDC73;
     }
+    
     button:focus {
-      outline: 0;
+        outline: thick double #FFDC73;
     }
     button:hover {
       background-color: #FFC926;

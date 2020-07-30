@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { API } from "../APIservice";
 import { StyledForm } from "./styles/Form.styled";
@@ -10,15 +9,15 @@ function Auth() {
     const [ password, setPassword ] = useState('');
     const [isLoginView, setIsLoginView ] = useState(true);
 
-    // eslint-disable-next-line
     const [token, setToken] = useCookies(['mr-token']);
 
-    const history = useHistory();
+    useEffect( () => {
+        if(token['mr-token']) window.location.href = '/movies';
+    }, [token])
 
     const signInClicked = () => {
         API.loginUser({username, password})
             .then( resp => setToken('mr-token', resp.token))
-            .then( history.push('/movies'))
             .catch( error => console.log(error))
     }
 
@@ -27,6 +26,8 @@ function Auth() {
             .then( () => signInClicked())
             .catch( error => console.log(error))
     }
+
+    const isDisabled = username.length === 0 || password.length === 0;
 
     return (
         <StyledForm>
@@ -41,8 +42,8 @@ function Auth() {
                        value={password} placeholder="password"
                        onChange={ evt => setPassword(evt.target.value)} />
                 {isLoginView ?
-                    <button onClick={signInClicked}>Sign In</button> :
-                    <button onClick={signUpClicked}>Register</button>
+                    <button onClick={signInClicked} disabled={isDisabled}>Sign In</button> :
+                    <button onClick={signUpClicked} disabled={isDisabled}>Register</button>
                 }
                 {isLoginView ?
                     <p onClick={() => setIsLoginView(false)}>No account? Click here to register!</p> :

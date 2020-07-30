@@ -26,7 +26,7 @@ function AppBar() {
 
         <StyledAppBar>
             <h1>
-                <span><a href='/'><FontAwesomeIcon icon={faFilm} /></a> </span>
+                <span><a href='/' aria-label="Home"><FontAwesomeIcon icon={faFilm} /></a> </span>
                    The Nic Cage Direct to Video Movie Rater
                 <button id='logout' onClick={logoutUser}>
                     Sign Out

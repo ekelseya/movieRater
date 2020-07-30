@@ -12,7 +12,7 @@ function MovieList(props) {
             <div className="layout-title">
                 { props.movies && props.movies.map( movie => {
                     return <div key={movie.id}>
-                        <div className="movie-title" onClick={movieClicked(movie)}>{ movie.title }</div>
+                        <div className="movie-title" tabIndex="0" onClick={movieClicked(movie)} onKeyPress={movieClicked(movie)}>{ movie.title }</div>
                     </div>
                 })}
             </div>

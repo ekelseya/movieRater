@@ -57,14 +57,13 @@ class MovieSerializer(serializers.ModelSerializer):
     """
     A simple serializer class to render movie data as JSON objects
     """
-    comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         """
         Automatically generates a set of fields based on the Movie model
         """
         model = Movie
-        fields = ('id', 'title', 'description', 'num_ratings', 'avg_rating', 'year_released', 'comments')
+        fields = ('id', 'title', 'description', 'num_ratings', 'avg_rating', 'year_released')
 
 
 class RatingSerializer(serializers.ModelSerializer):

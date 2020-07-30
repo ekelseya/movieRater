@@ -5,6 +5,7 @@ export const StyledMovieDetail = styled.div`
     margin: 0 10%;
     padding: 0;
     line-height: 1;
+    cursor: default;
     
     p {
         font-size: calc(10px + 1.25vmin);
@@ -31,7 +32,6 @@ export const StyledMovieDetail = styled.div`
         margin-top: .5rem;
         padding-bottom: 1rem;
         border-top: 2px solid #ffbf00;
-        cursor: default;
     }
     
     .rating-container .fa-star {

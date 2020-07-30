@@ -85,7 +85,7 @@ class RatingViewSet(viewsets.ModelViewSet):
     """
     A simple viewset for viewing rating instances
 
-    update and create overridden and replaced by MovieViewSet.comment
+    update and create overridden and replaced by MovieViewSet.rate_movie
 
     """
     queryset = Rating.objects.all()

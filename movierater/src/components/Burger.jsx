@@ -4,7 +4,7 @@ import { StyledBurger } from './styles/Burger.styled';
 
 const Burger = ({open, setOpen}) => {
     return (
-        <StyledBurger open={open} onClick={() => setOpen(!open)}>
+        <StyledBurger aria-label="Home" open={open} onClick={() => setOpen(!open)}>
             <div />
             <div />
             <div />
