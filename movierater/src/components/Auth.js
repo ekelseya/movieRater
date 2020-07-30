@@ -7,8 +7,7 @@ function Auth() {
 
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
-    const [isLoginView, setIsLoginView ] = useState(true);
-
+    const [ isLoginView, setIsLoginView ] = useState(true);
     const [token, setToken] = useCookies(['mr-token']);
 
     useEffect( () => {
